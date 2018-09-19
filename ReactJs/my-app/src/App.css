@@ -1,28 +1,38 @@
-.App {
-  text-align: center;
+.button-tab{
+    background-color: lightblue; /* Green background */
+    border: 1px solid lightblue; /* Green border */
+    border-radius: 25px;
+    margin-bottom:5px;
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 30%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.button-tab:hover {
+     background-color: white;
+     color: black;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.Left{
+  border-radius: 25px;
+  float:left;
+  width: 30%;
+  height: 200px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 10px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.Right{
+  float: left;
+  width: 65%;
+  height: 200px; /* only for demonstration, should be removed */
+  background: white;
+  padding: 10px;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.content {
+    margin-left: 30%;
+    background: white;
 }
