@@ -1,4 +1,5 @@
 .button-tab{
+    margin-left: 10%;
     background-color: lightblue; /* Green background */
     border: 1px solid lightblue; /* Green border */
     border-radius: 25px;
@@ -6,7 +7,7 @@
     color: white; /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
-    width: 30%; /* Set a width if needed */
+    width: 100%; /* Set a width if needed */
     display: block; /* Make the buttons appear below each other */
 }
 
@@ -17,22 +18,50 @@
 
 .Left{
   border-radius: 25px;
+  border: 1px solid black;
   float:left;
-  width: 30%;
+  width: 79%;
   height: 200px; /* only for demonstration, should be removed */
-  background: #ccc;
-  padding: 10px;
+  background: white;
+}
+
+p{
+  text-align: center ;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%
 }
 
 .Right{
   float: left;
-  width: 65%;
+  width: 20%;
   height: 200px; /* only for demonstration, should be removed */
   background: white;
-  padding: 10px;
 }
 
 .content {
-    margin-left: 30%;
-    background: white;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10px ;
+    height: 500px;
+}
+
+.square{
+  line-height:50px;
+  text-align:center;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 8%;
+  background-color: lightblue; /* Green background */
+  border-radius: 10px;
+  height: 50px;
+}
+
+.arrays{
+  width: 100%;
+  margin-left: 20px;
+  margin-top: 80px;
+  background: black;
 }

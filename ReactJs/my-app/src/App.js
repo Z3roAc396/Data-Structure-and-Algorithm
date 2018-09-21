@@ -9,16 +9,26 @@ class Tab extends Component{
   }
 }
 
+class Square extends Component{
+  render(){
+    return(
+      <div className="square">{this.props.value}  </div>
+    )
+  }
+}
+
 class App extends Component {
   constructor(){
     super();
 
     this.state={
-      MenuType: 0
+      MenuType: 0,
+      AnimationType: 0,
+      AnimationArray: [],
+      Count: 0
     }
 
-    this.showSortingMenu = this.showSortingMenu.bind(this);
-    this.showSearchingMenu = this.showSearchingMenu.bind(this);
+    this.playInsertionSort = this.playInsertionSort.bind(this);
   }
 
   showSortingMenu() {
@@ -31,7 +41,28 @@ class App extends Component {
     );
   }
 
-  renderSwitch(x){
+  playInsertionSort(){
+    this.setState({Count: 0})
+    fetch('http://127.0.0.1:5000/api/algorithm/InsertionSort')
+    .then(results=>{
+      return results.json()
+    }).then(data=>{
+      this.setState({AnimationType:1, AnimationArray:data});
+
+    })
+
+    var timesRun=0
+    var interval=setInterval(() => {
+        this.tick();
+        timesRun += 1;
+        if(timesRun==this.state.AnimationArray.length-1){
+          clearInterval(interval);
+        }
+        console.log(1);
+      }, 1000);
+    }
+
+  renderMenu(x){
     switch(x) {
       case 0:
         return (
@@ -44,8 +75,8 @@ class App extends Component {
       case 1:
       return (
         <div className="dropdown-content">
-          <Tab value={"Back"} onClick={() => this.setState({MenuType:0})}/>
-          <Tab value={"Insertion Sort"}/>
+          <Tab value={"Back"} onClick={() => this.setState({MenuType:0, AnimationType:0})}/>
+          <Tab value={"Insertion Sort"} onClick={() => this.playInsertionSort()}/>
           <Tab value={"Merge Sort"}/>
         </div>
       );
@@ -69,15 +100,51 @@ class App extends Component {
       }
   }
 
+  tick() {
+    this.setState(prevState => {
+       return {Count: prevState.Count + 1}
+    });
+    this.forceUpdate();
+    console.log(this.state.Count)
+  }
+
+  renderAnimation(x){
+    switch(x) {
+      case 0:
+        return (
+          <p>Click on any button to show the animation of the algorithm</p>
+        );
+
+      case 1:
+      return (
+        <div className="arrays">
+          <Square value={this.state.AnimationArray[this.state.Count][0]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][1]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][2]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][3]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][4]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][5]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][6]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][7]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][8]}/>
+          <Square value={this.state.AnimationArray[this.state.Count][9]}/>
+        </div>
+      );
+
+      default:
+        return 'foo';
+      }
+  }
+
+
   render() {
-    console.log(this.state.MenuType)
     return (
     <div className="content">
       <div className="Left">
-        <p>Click on any button to show the animation of the algorithm</p>
+        {this.renderAnimation(this.state.AnimationType)}
       </div>
       <div className="Right">
-        {this.renderSwitch(this.state.MenuType)}
+        {this.renderMenu(this.state.MenuType)}
       </div>
     </div>
   );
